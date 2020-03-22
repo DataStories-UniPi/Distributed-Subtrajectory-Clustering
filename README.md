@@ -15,7 +15,7 @@ The input is an hdfs directory containing csv files (comma delimited) of the for
 * lon and lat are the coordinates in WGS84
 
 ## Preprocessing
-For each dataset that is going to be used a [preprocessing step](https://github.com/DataStories-UniPi/Distributed-Subtrajectory-Join/blob/master/src/DSJ/PreprocessDriver.java) must take place before the first run of DSJ.
+For each dataset that is going to be used a [preprocessing step](https://github.com/DataStories-UniPi/Distributed-Subtrajectory-Clustering/blob/master/src/DSC/PreprocessDriver.java) must take place before the first run of DSJ.
 ### Input Parameters
 The input parameters of this preprocessing step are the following:
 * hostname --> is a string representing the hostname (e.g. localhost)
