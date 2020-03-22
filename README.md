@@ -57,7 +57,32 @@ The input parameters of DSC are the following:
 
 * job_description = is a string corresponding to the name of the current run (this is helpfull when multiple runs with different parameters take place)
 
-Example --> yarn jar DSC.jar "hdfs://localhost" ":9000" ":8050" /workspace_dir" "/input" "/intermdt_output" "/clust_output" nof_reducers e_sp_method epsilon_sp epsilon_t dt SegmentationAlgorithm w tau threshSim minVoting DSC_run_1
+Example --> yarn jar DSC.jar "hdfs://localhost" ":9000" ":8050" /workspace_dir" "/input" "/intermdt_output" "/subtraj" "/clust_output" nof_reducers e_sp_method epsilon_sp epsilon_t dt SegmentationAlgorithm w tau threshSim minVoting DSC_run_1
+
+### Output Format
+The output of DSC are key-value pairs of the following format:
+
+<repr_obj_id, repr_traj_id, repr_subtraj_id> <obj_id, traj_id, subtraj_id, similarity>
+
+where <repr_obj_id, repr_traj_id, repr_subtraj_id> is the representative subtrajectory that represents an entire cluster and <obj_id, traj_id, subtraj_id, similarity> is a subtrajectory that belongs to the specific cluster.
+
+
+## Post-processing
+Since the output doesn't provide the actual subtrajectories (i.e. their movement), this is an optional step that [joins the result](https://github.com/DataStories-UniPi/Distributed-Subtrajectory-Clustering/blob/master/src/DSC/JoinResultsDriver.java) with the original data and produces a dataset that contains the mobility information of the subtrajectories.
+
+### Input Parapeters
+The input parameters are the following:
+* hostname --> is a string representing the hostname (e.g. localhost)
+* dfs_port --> is a string representing the hdfs port
+* rm_port -->  is a string representing the YARN resource manager port
+* workspace_dir --> is a string corresponding to the HDFS path of your workspace;
+* input_dir --> is a string corresponding to the relative HDFS path (in relation with the workspace_dir) where the input of DSC is stored
+* subtraj_dir --> is a string corresponding to the relative HDFS path (in relation with the workspace_dir) where the files containing information about the discovered subtrajectories will be stored (refer to [1] for more details)
+* output_dir --> is a string corresponding to the relative HDFS path (in relation with the workspace_dir) where the output of DSc will be stored
+* nof_reducers --> is an integer corresponding to the number of reducers
+* repr_only --> is a boolean that if set true it outputs only the representatives of a Cluster and if set false then it also outputs the Cluster members
+
+Example --> yarn jar JoinResults.jar "hdfs://localhost" ":9000" ":8050" /workspace_dir" "/input" "/subtraj" "/output" nof_reducers e_sp_method epsilon_sp epsilon_t dt SegmentationAlgorithm w tau threshSim minVoting repr_only JoinResults_run_1
 
 ## References
 1. P. Tampakis, N. Pelekis, C. Doulkeridis, and Y. Theodoridis. “Scalable Distributed Subtrajectory Clustering”. In:IEEE BigData 2019. 2019, pp. 950–959
