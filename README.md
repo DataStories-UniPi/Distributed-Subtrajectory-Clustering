@@ -84,5 +84,9 @@ The input parameters are the following:
 
 Example --> yarn jar JoinResults.jar "hdfs://localhost" ":9000" ":8050" /workspace_dir" "/input" "/subtraj" "/output" nof_reducers e_sp_method epsilon_sp epsilon_t dt SegmentationAlgorithm w tau threshSim minVoting repr_only JoinResults_run_1
 
+## Acknowledgement
+This work was partially supported by the European Union’s Horizon 2020 research and innovation programme under grant agreements No 780754 (Track & Know) and No 777695 (MASTER).
+Furthermore, this work was partially supported by the Greek Ministry of Development andInvestment, General Secretariat of Research and Technology, under the Operational Programme Competitiveness, Entrepreneurship and Innovation 2014-2020 (grant T1EDK-03268, i4sea).
+
 ## References
 1. P. Tampakis, N. Pelekis, C. Doulkeridis, and Y. Theodoridis. “Scalable Distributed Subtrajectory Clustering”. In:IEEE BigData 2019. 2019, pp. 950–959
